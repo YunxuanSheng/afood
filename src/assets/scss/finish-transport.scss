@@ -1,0 +1,80 @@
+/*
+ * @Author: YunxuanSheng 
+ * @Date: 2021-07-19 16:30:01 
+ * @Last Modified by: YunxuanSheng
+ * @Last Modified time: 2021-07-20 10:31:49
+ */
+
+
+.finish-transport{
+
+  .header{
+    // margin-top: 46px;
+  }
+
+  .img-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container{
+      margin-top: 6px;
+        margin-left: 15px;
+
+        width: 345px;
+        height: 205px;
+        border-radius: 4px;
+        background-color: #F6F6F6;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .product-img{
+          height:169px;
+          width:109px;
+        }
+    }
+  }
+
+
+  .transport-head{
+    display: flex;
+    justify-content: space-between;
+
+    margin: 13px 15px 20px 25px ;
+
+    .product-name{
+      font-size: 16px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #282B3F;
+      line-height: 22px;
+    }
+
+    .product-tag{
+      background-color: rgba(35, 148, 147, 0.2);
+      text-color:"#005D28";
+    }
+  }
+
+  .transport-detail{
+
+    .van-row{
+
+      margin-left: 25px;
+      margin-top: 10px;
+
+      font-size: 13px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      line-height: 18px;
+    }
+
+    .transport-date{
+      color:#545B6C;
+    }
+  }
+
+
+}

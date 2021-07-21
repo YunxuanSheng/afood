@@ -1,0 +1,141 @@
+/*
+ * @Author: YunxuanSheng 
+ * @Date: 2021-07-19 16:30:48 
+ * @Last Modified by: YunxuanSheng
+ * @Last Modified time: 2021-07-20 11:08:32
+ */
+
+
+.wait-transport{
+
+  .header{
+    // margin-top: 46px;
+  }
+
+  .img-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container{
+      margin-top: 6px;
+        margin-left: 15px;
+
+        width: 345px;
+        height: 205px;
+        border-radius: 4px;
+        background-color: #F6F6F6;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .product-img{
+          height:169px;
+          width:109px;
+        }
+    }
+  }
+
+
+  .van-button--info{
+    width: 351px;
+    height: 49px;
+    border-radius: 4px;
+    background: #239493;
+
+    margin-bottom: 0px;
+    margin-top: 38px;
+
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 25px;
+  }
+
+  .transport-head{
+    display: flex;
+    justify-content: space-between;
+
+    margin: 13px 15px 20px 25px ;
+
+    .product-name{
+      font-size: 16px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #282B3F;
+      line-height: 22px;
+    }
+
+    .product-tag{
+      background-color: rgba(35, 148, 147, 0.2);
+      text-color:"#005D28";
+    }
+  }
+
+  .transport-detail{
+
+    .van-row{
+
+      margin-left: 25px;
+      margin-top: 10px;
+
+      font-size: 13px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      line-height: 18px;
+    }
+
+    .transport-date{
+      color:#545B6C;
+    }
+
+
+  }
+
+  .vehicle-info{
+    .van-col{
+      height:18px;
+    }
+
+    .van-form{
+      .submit-div{
+        display: flex;
+        justify-content: center;
+      }
+
+      .van-cell{
+        margin-top: 6px;
+        margin-left: 25px;
+        padding: 0px 0px 2px;
+
+        font-size: 13px;
+        font-family: PingFang-SC-Regular, PingFang-SC;
+        font-weight: 400;
+        color: #282B3F;
+        line-height: 18px;
+
+        height:25px;
+      }
+
+      ::v-deep{
+        .van-cell::after{
+          border-bottom: 0px;
+        }
+
+        .van-field__body{
+          width: 220px;
+          height: 25px;
+          border-radius: 2px;
+          border: 1px solid #E9EAEB;
+        }
+      }
+    }
+}
+
+
+
+
+
+}

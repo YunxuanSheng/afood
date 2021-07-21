@@ -1,0 +1,77 @@
+/*
+ * @Author: YunxuanSheng 
+ * @Date: 2021-07-19 16:30:58 
+ * @Last Modified by: YunxuanSheng
+ * @Last Modified time: 2021-07-19 16:44:48
+ */
+
+
+.user-center{
+  width: 375px;
+  height: 667px;
+  background: #f4f6fc;
+  margin: 0px;
+  padding: 0px;
+
+    .header{
+      height: 214px;
+      background: url('../images/user-center/background-user.png');
+      background-size: contain;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+  .user-name{
+    font-size: 16px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 22px;
+
+    margin-top: 14px;
+  }
+
+  .location{
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  .tasks-header{
+    display: flex;
+    align-items: center;
+    height: 45px;
+    background: #FFFFFF;
+    font-size: 14px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #282B3F;
+    line-height: 20px;
+
+    #my-task{
+      margin-left: 20px;
+    }
+  }
+
+  .tasks {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+
+
+    .arrow-icon{
+      color: #B0B0B0;
+    }
+  }
+}

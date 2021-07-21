@@ -1,0 +1,117 @@
+.Login {
+  width: 375px;
+  height: 667px;
+  background: url("../images/background.png") no-repeat fixed center;
+  background-color: aqua;
+  background-size: cover;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.w {
+  margin: 0 auto;
+}
+
+.iconfont {
+  color: #dfe9f2;
+  font-size: 20px !important;
+}
+
+.main {
+  width: 303px;
+  height: 394px;
+  margin-top: 75px;
+}
+
+.main .main-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .main-top .logo {
+  width: 50px;
+  height: 50px;
+}
+
+.main .main-top .close .iconclose {
+  font-size: 18px;
+  color: gray;
+}
+
+.main h2 {
+  font-size: 20px;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 28px;
+  margin: 40px 0;
+}
+
+.main .line {
+  color: #dfe9f2;
+}
+
+.main .code {
+  font-family: PingFangSC-Regular, PingFang SC;
+  margin-left: 15px;
+  color: #dfe9f2;
+}
+
+.main .van-field__control {
+  padding: 0 15px !important;
+  color: #ffffff !important;
+}
+
+.main .van-cell-group {
+  background-color: transparent !important;
+}
+
+.main .van-field {
+  background-color: transparent !important;
+}
+
+.main .van-cell {
+  background-color: transparent !important;
+  padding: 0 0 10px 0 !important;
+  margin-bottom: 27px;
+  border-bottom: 1px solid rgba(233, 243, 255, 0.3);
+}
+
+.main .van-cell::after {
+  border-bottom: none !important;
+}
+
+.main .van-hairline--top-bottom::after,
+.main .van-hairline-unset--top-bottom::after {
+  border: none !important;
+}
+
+.main .systemCode {
+  float: left;
+  width: 186px !important;
+}
+
+.main .vertical {
+  width: 95px;
+  height: 40px;
+  float: right;
+  background: rgba(216, 216, 216, 0.3);
+  border-radius: 2px;
+}
+
+.main .van-button {
+  background-color: rgba(255, 255, 255, 0.49) !important;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  color: #282b3f !important;
+  font-size: 14px;
+  border: none !important;
+}
+/*# sourceMappingURL=login.css.map */

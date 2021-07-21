@@ -1,0 +1,93 @@
+/*
+ * @Author: YunxuanSheng 
+ * @Date: 2021-07-19 16:29:54 
+ * @Last Modified by:   YunxuanSheng 
+ * @Last Modified time: 2021-07-19 16:29:54 
+ */
+
+
+.finish-task{
+  width: 100%;
+  background-size: contain;
+  background-color:  #F4F6FC;
+
+  .background{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color:  #F4F6FC;
+    z-index: 0;
+  }
+
+  .content{
+    z-index: 1;
+  }
+
+  .transaction{
+    margin-bottom: 10px;
+  }
+
+  .img-div{
+    width: 79px;
+    height: 79px;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-image{
+    height: 65px;
+    width: auto;
+  }
+
+  .product-info{
+    font-family: PingFangSC-Medium, PingFang SC;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+  }
+
+  .product-status{
+    text-align: right;
+  }
+
+  .product-name{
+    font-size: 14px;
+    font-weight: 500;
+    color: #282B3F;
+    line-height: 20px;
+  }
+
+  .product-detail{
+    margin-top: 17px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  .transport-date{
+    font-size: 12px;
+    font-weight: 400;
+    color: #545B6C;
+    line-height: 17px;
+
+    margin-top: 7px;
+  }
+
+  .transport-address{
+    font-size: 13px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #4A4A4A;
+    line-height: 18px;
+  }
+}

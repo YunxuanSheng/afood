@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 1496948 */
+  src: url('iconfont.woff2?t=1625299854618') format('woff2'),
+       url('iconfont.woff?t=1625299854618') format('woff'),
+       url('iconfont.ttf?t=1625299854618') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconclose:before {
+  content: "\e69b";
+}
+
+.iconenvelop-o:before {
+  content: "\e69f";
+}
+
+.iconother-pay:before {
+  content: "\e6ab";
+}
+
+.iconicon_huabanfuben:before {
+  content: "\e633";
+}
+
