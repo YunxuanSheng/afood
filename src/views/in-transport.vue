@@ -1,10 +1,3 @@
-/*
- * @Author: YunxuanSheng 
- * @Date: 2021-07-19 16:28:49 
- * @Last Modified by:   YunxuanSheng 
- * @Last Modified time: 2021-07-19 16:28:49 
- */
-
 
 <template>
   <div class="in-transport">
@@ -82,8 +75,18 @@ export default {
     return {
       tel: '',
       messageCode: '',
-      systemCode: ''
+      systemCode: '',
+      userInfo: []
     }
+  },
+  methods: {
+    getTask () {
+      this.task = this.$route.params.task
+      // console.log(this.$route.params.task)
+    }
+  },
+  mounted () {
+    this.getTask()
   }
 }
 </script>

@@ -20,9 +20,8 @@
         background="#F4F6FC"
         title-active-color="#005D28"
       >
-        <van-tab title="售出提货"> </van-tab>
-        <van-tab title="待交易" active="font-size: 18px;">
-          <div class="transaction">
+        <van-tab title="售出提货">
+          <div class="transaction" v-for = "(item,index) in transactions" :key="index" v-show="item.orderStatus==='1'">
             <van-cell class="transaction-header-cell">
               <div class="transaction-header">
                 <div class="header-icon">
@@ -30,15 +29,15 @@
                 </div>
                 <div class="">
                   <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
+                    <div class="customer-name">{{item.customerName}}</div>
                     <div class="customer-phone">
                       <van-icon name="phone-circle" />
                     </div>
                   </div>
-                  <div class="index">订单编号：DX1234567890</div>
+                  <div class="index">订单编号：{{item.code}}</div>
                 </div>
               </div>
-              <div class="transaction-info">
+              <div class="transaction-info" v-for = "(order,index) in item.orderInfoList" :key="index">
                 <van-row>
                   <van-col span="6">
                     <div class="img-div">
@@ -52,247 +51,46 @@
                     <van-row>
                       <van-col span="19">
                         <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
+                          {{order.brand}}
                         </div>
                       </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
+                      <van-col class="product-price" span="5"> ￥{{order.amount}} </van-col>
                     </van-row>
                     <van-row>
                       <div class="product-detail">
                         <div class="transport-tag">
                           <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
+                            >支持{{getStatus(order.receiveType)}}</van-tag
                           >
                         </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
+                        <div class="product-format">规格：{{order.spec}} </div>
+                        <div class="product-amount">数量：{{order.quantity}}</div>
                       </div>
                     </van-row>
                   </van-col>
                 </van-row>
                 <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product1.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">天然有机绿色食品大米</div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已自提</div>
+                  <div class="transaction-status">已{{getStatus(order.receiveType)}}</div>
                 </van-row>
               </div>
             </van-cell>
 
-            <van-cell class="transaction-total-cell">
+            <van-cell class="transaction-total-cell" >
               <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
+                <div class="transaction-date">{{item.tranTime}}</div>
+                <div class="total-price">总计：￥{{totalPrice(item)}}</div>
               </div>
               <div class="transaction-buttons">
-                <van-button class="cancle">关闭交易</van-button>
-                <van-button class="complete">完成交易</van-button>
+                <van-button class="cancle" @click="closeOrder(item)">关闭交易</van-button>
+                <van-button class="complete" @click="completeOrder(item)">完成交易</van-button>
               </div>
             </van-cell>
           </div>
 
-          <div class="transaction">
-            <van-cell>
-              <div class="transaction-header">
-                <div class="header-icon">
-                  <div class="hotel-icon"><van-icon name="hotel-o" /></div>
-                </div>
-                <div class="">
-                  <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
-                    <div class="customer-phone">
-                      <van-icon name="phone-circle" />
-                    </div>
-                  </div>
-                  <div class="index">订单编号：DX1234567890</div>
-                </div>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product2.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
-                        </div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-            </van-cell>
-
-            <van-cell class="transaction-total-cell">
-              <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
-              </div>
-              <div class="transaction-buttons">
-                <van-button class="cancle">关闭交易</van-button>
-                <van-button class="complete">完成交易</van-button>
-              </div>
-            </van-cell>
-          </div>
-
-          <div class="transaction">
-            <van-cell>
-              <div class="transaction-header">
-                <div class="header-icon">
-                  <div class="hotel-icon"><van-icon name="hotel-o" /></div>
-                </div>
-                <div class="">
-                  <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
-                    <div class="customer-phone">
-                      <van-icon name="phone-circle" />
-                    </div>
-                  </div>
-                  <div class="index">订单编号：DX1234567890</div>
-                </div>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product2.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
-                        </div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product1.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">天然有机绿色食品大米</div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已自提</div>
-                </van-row>
-              </div>
-            </van-cell>
-
-            <van-cell class="transaction-total-cell">
-              <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
-              </div>
-              <div class="transaction-buttons">
-                <van-button class="cancle">关闭交易</van-button>
-                <van-button class="complete">完成交易</van-button>
-              </div>
-            </van-cell>
-          </div>
         </van-tab>
-        <van-tab title="已完成">
-          <div class="transaction">
+
+        <van-tab title="待交易" active="font-size: 18px;">
+          <div class="transaction" v-for = "(item,index) in transactions" :key="index" v-show="item.orderStatus==='0'">
             <van-cell class="transaction-header-cell">
               <div class="transaction-header">
                 <div class="header-icon">
@@ -300,15 +98,15 @@
                 </div>
                 <div class="">
                   <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
+                    <div class="customer-name">{{item.customerName}}</div>
                     <div class="customer-phone">
                       <van-icon name="phone-circle" />
                     </div>
                   </div>
-                  <div class="index">订单编号：DX1234567890</div>
+                  <div class="index">订单编号：{{item.code}}</div>
                 </div>
               </div>
-              <div class="transaction-info">
+              <div class="transaction-info" v-for = "(order,index) in item.orderInfoList" :key="index">
                 <van-row>
                   <van-col span="6">
                     <div class="img-div">
@@ -322,90 +120,62 @@
                     <van-row>
                       <van-col span="19">
                         <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
+                          {{order.brand}}
                         </div>
                       </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
+                      <van-col class="product-price" span="5"> ￥{{order.amount}} </van-col>
                     </van-row>
                     <van-row>
                       <div class="product-detail">
                         <div class="transport-tag">
                           <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
+                            >支持{{getStatus(order.receiveType)}}</van-tag
                           >
                         </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
+                        <div class="product-format">规格：{{order.spec}} </div>
+                        <div class="product-amount">数量：{{order.quantity}}</div>
                       </div>
                     </van-row>
                   </van-col>
                 </van-row>
                 <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product1.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">天然有机绿色食品大米</div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已自提</div>
+                  <div class="transaction-status">{{getStatus(order.receiveType)}}:{{getStatusInfo(order,item)}}</div>
                 </van-row>
               </div>
             </van-cell>
 
-            <van-cell class="transaction-total-cell">
+            <van-cell class="transaction-total-cell" >
               <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
+                <div class="transaction-date">{{item.tranTime}}</div>
+                <div class="total-price">总计：￥{{totalPrice(item)}}</div>
+              </div>
+              <div class="transaction-buttons">
+                <van-button class="cancle" @click="closeOrder(item)">关闭交易</van-button>
+                <van-button class="complete" @click="completeOrder(item)">完成交易</van-button>
               </div>
             </van-cell>
           </div>
 
-          <div class="transaction">
-            <van-cell>
+        </van-tab>
+
+        <van-tab title="已完成">
+          <div class="transaction" v-for = "(item,index) in transactions" :key="index" v-show="item.orderStatus==='2'">
+            <van-cell class="transaction-header-cell">
               <div class="transaction-header">
                 <div class="header-icon">
                   <div class="hotel-icon"><van-icon name="hotel-o" /></div>
                 </div>
                 <div class="">
                   <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
+                    <div class="customer-name">{{item.customerName}}</div>
                     <div class="customer-phone">
                       <van-icon name="phone-circle" />
                     </div>
                   </div>
-                  <div class="index">订单编号：DX1234567890</div>
+                  <div class="index">订单编号：{{item.code}}</div>
                 </div>
               </div>
-              <div class="transaction-info">
+              <div class="transaction-info" v-for = "(order,index) in item.orderInfoList" :key="index">
                 <van-row>
                   <van-col span="6">
                     <div class="img-div">
@@ -415,163 +185,109 @@
                       />
                     </div>
                   </van-col>
-                  <van-col class="product-info" span="17">
+                  <van-col class="product-info" span="17" offset="1">
                     <van-row>
-                      <van-col span="19">
+                      <van-col span="18">
                         <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
+                          {{order.brand}}
                         </div>
                       </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D">
-                            支持配送
-                          </van-tag>
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-            </van-cell>
-
-            <van-cell class="transaction-total-cell">
-              <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
-              </div>
-            </van-cell>
-          </div>
-
-          <div class="transaction">
-            <van-cell>
-              <div class="transaction-header">
-                <div class="header-icon">
-                  <div class="hotel-icon"><van-icon name="hotel-o" /></div>
-                </div>
-                <div class="">
-                  <div class="customer">
-                    <div class="customer-name">杭州市市第七中学</div>
-                    <div class="customer-phone">
-                      <van-icon name="phone-circle" />
-                    </div>
-                  </div>
-                  <div class="index">订单编号：DX1234567890</div>
-                </div>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product2.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">
-                          乔家大院五常大米描述字段很长的展示方式是换行显示
-                        </div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
+                      <van-col class="product-price" span="5"> ￥{{order.amount}} </van-col>
                     </van-row>
                     <van-row>
                       <div class="product-detail">
                         <div class="transport-tag">
                           <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
+                            >支持{{getStatus(order.receiveType)}}</van-tag
                           >
                         </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
+                        <div class="product-format">规格：{{order.spec}} </div>
+                        <div class="product-amount">数量：{{order.quantity}}</div>
                       </div>
                     </van-row>
                   </van-col>
                 </van-row>
                 <van-row>
-                  <div class="transaction-status">已配送</div>
-                </van-row>
-              </div>
-              <div class="transaction-info">
-                <van-row>
-                  <van-col span="6">
-                    <div class="img-div">
-                      <img
-                        src="@/assets/images/product-image/product1.png"
-                        class="product-image"
-                      />
-                    </div>
-                  </van-col>
-                  <van-col class="product-info" span="17">
-                    <van-row>
-                      <van-col span="19">
-                        <div class="product-name">天然有机绿色食品大米</div>
-                      </van-col>
-                      <van-col class="product-price" span="5"> ￥35.0 </van-col>
-                    </van-row>
-                    <van-row>
-                      <div class="product-detail">
-                        <div class="transport-tag">
-                          <van-tag color="#F3F4F5" text-color="#9A9B9D"
-                            >支持配送</van-tag
-                          >
-                        </div>
-                        <div class="product-format">规格：5KG</div>
-                        <div class="product-amount">数量：10</div>
-                      </div>
-                    </van-row>
-                  </van-col>
-                </van-row>
-                <van-row>
-                  <div class="transaction-status">已自提</div>
+                  <div class="transaction-status">已{{getStatus(order.receiveType)}}</div>
                 </van-row>
               </div>
             </van-cell>
 
-            <van-cell class="transaction-total-cell">
+            <van-cell class="transaction-total-cell" >
               <div class="transaction-total">
-                <div class="transaction-date">2020/05/21</div>
-                <div class="unit-price">单价：￥35.00</div>
-                <div class="total-price">总计：￥350.00</div>
+                <div class="transaction-date">{{item.tranTime}}</div>
+                <div class="total-price">总计：￥{{totalPrice(item)}}</div>
+              </div>
+              <div class="transaction-buttons">
+                <van-button class="cancle" @click="closeOrder(item)">关闭交易</van-button>
+                <van-button class="complete" @click="completeOrder(item)">完成交易</van-button>
               </div>
             </van-cell>
           </div>
+
         </van-tab>
       </van-tabs>
     </div>
   </div>
 </template>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 // @ is an alias to /src
-
+import queryApi from '@/api/query.js'
 export default {
   name: 'TransactionDetail',
   data () {
     return {
       value: '',
       active: 'transaction-detail',
-      price: 0
+      joke: 'hello',
+      transactions: [],
     }
   },
-  created: {
-    // const res = await this.axios.get('xxx', ...)
-    // try {const res = await this.axios.get('xxx', ...)} catch(e) {}
-    // if (res) {this.price = res.data.price} else {}
-    // this.price = res.data.price
+  methods: {
+    getTransactions () {
+        queryApi.getTransactions('query/getTransactions').then(res => {
+          this.transactions = res
+        // console.log(this.transactions)
+      })
+    },
+    getStatus (status) {
+      if (status === '0') return '配送'
+      else if (status === '1') return '自提'
+      else if (status === '2') return '配送和自提'
+    },
+    getStatusInfo (order,item) {
+      const status = order.receiveType
+      if (status === '0') return item.address
+      else if (status === '1') return order.selfTakeCode
+    },
+    totalPrice (item) {
+      let total = 0
+      for (var k = 0, length = item.orderInfoList.length; k < length; k++)
+      {
+        total += item.orderInfoList[k].amount * item.orderInfoList[k].quantity
+      }
+      return total
+    },
+    closeOrder (item) {
+      queryApi.closeOrder({id: item.id})
+    },
+    completeOrder (item) {
+      queryApi.completeOrder({id: item.id})
+    }
+  },
+  created: function () {
+
+  },
+  computed: {
+
+  },
+  mounted () {
+    this.getTransactions()
+    // setInterval(()=> { this.getTransactions() }, 3000)
   }
 }
+
 </script>
 <style lang="scss" scoped src='../assets/scss/transaction-detail.scss'>
 </style>

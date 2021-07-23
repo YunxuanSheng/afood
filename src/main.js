@@ -14,6 +14,9 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 // import 'vant/lib/index.less'
 import './assets/iconfont/iconfont.css'
+import axios from 'axios'
+Vue.prototype.$axios = axios
+
 Vue.use(Vant)
 
 Vue.config.productionTip = false

@@ -14,6 +14,7 @@ import WaitTransport from '../views/wait-transport.vue'
 import InTransport from '../views/in-transport.vue'
 import FinishTransport from '../views/finish-transport.vue'
 import FinishTask from '../views/finish-task.vue'
+import IncompleteTask from '../views/incomplete-task.vue'
 import TransactionDetail from '../views/transaction-detail.vue'
 
 Vue.use(VueRouter)
@@ -66,6 +67,10 @@ const routes = [
     path: '/finish-task',
     name: 'FinishTask',
     component: FinishTask
+  }, {
+    path: '/incomplete-task',
+    name: 'IncompleteTask',
+    component: IncompleteTask
   }, {
     path: '/transaction-detail',
     name: 'TransactionDetail',

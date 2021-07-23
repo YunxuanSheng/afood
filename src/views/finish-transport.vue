@@ -27,35 +27,35 @@
       <div class="transport-detail">
         <van-row>
           <van-col span="4">规格:</van-col>
-          <van-col span="20">5kg/袋</van-col>
+          <van-col span="20">{{task.goodsSpec}}</van-col>
         </van-row>
         <van-row >
           <van-col span="4">运输数量:</van-col>
-          <van-col span="20">100</van-col>
+          <van-col span="20">{{task.deliveryQuantity}}</van-col>
         </van-row>
         <van-row class="transport-date">
           <van-col span="4">运送日期:</van-col>
-          <van-col span="20">2020/04/12~2020/05/20</van-col>
+          <van-col span="20">{{task.startDeliveryDate}}~{{task.endDeliveryDate}}</van-col>
         </van-row>
         <van-row>
           <van-col span="4">运送地址:</van-col>
-          <van-col span="20">湖北省武汉市江汉区沙县小吃店A座3902号</van-col>
+          <van-col span="20">{{task.province}}{{task.city}}{{task.county}}{{task.address}}</van-col>
         </van-row>
         <van-row>
           <van-col span="4">车辆归属:</van-col>
-          <van-col span="20">浙江风快运输公司</van-col>
+          <van-col span="20">{{task.stationName}}</van-col>
         </van-row>
         <van-row>
           <van-col span="4">车牌号码:</van-col>
-          <van-col span="20">浙A.12345</van-col>
+          <van-col span="20">{{task.carCoder}}</van-col>
         </van-row>
         <van-row>
           <van-col span="4">车辆型号:</van-col>
-          <van-col span="20">东风雪铁龙</van-col>
+          <van-col span="20">{{task.carModel}}</van-col>
         </van-row>
         <van-row>
           <van-col span="4">承载能力:</van-col>
-          <van-col span="20">50吨</van-col>
+          <van-col span="20">{{task.carLoader}}吨</van-col>
         </van-row>
       </div>
     </div>
@@ -67,10 +67,17 @@ export default {
   name: 'InTransport',
   data () {
     return {
-      tel: '',
-      messageCode: '',
-      systemCode: ''
+      task: []
     }
+  },
+  methods: {
+    getTask () {
+      this.task = this.$route.params.task
+      // console.log(this.$route.params.task)
+    }
+  },
+  mounted () {
+    this.getTask()
   }
 }
 </script>

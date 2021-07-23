@@ -4,11 +4,11 @@
   <div class="background">  </div>
   <div class="content">
     <van-nav-bar
-      title="已完成的任务"
+      title="待完成的任务"
       left-arrow
       class="header"
     />
-    <div class="transaction" v-for = "(task,index) in finishTaskList" :key="index" @click="checkDetail(index)">
+    <div class="transaction" v-for = "(task,index) in incompleteTaskList" :key="index" @click="checkDetail(index)" >
       <van-cell>
         <van-row>
           <van-col span="6">
@@ -32,7 +32,8 @@
             </div>
           </van-col>
           <van-col class="product-status" span="3.5">
-            <van-tag color="inherit" text-color="#9DA2BC">已完成</van-tag>
+            <van-tag color="rgba(192, 151, 60, 0.2)" text-color="#C0973C" v-if="task.deliveryStatus === '1'">运输中</van-tag>
+            <van-tag color="rgba(35, 148, 147, 0.2)" text-color="#005D28" v-if="task.deliveryStatus === '0'">待运输</van-tag>
           </van-col>
         </van-row>
         <van-row class="transaction">
@@ -73,17 +74,29 @@ export default {
       console.log(store.get(USER_INFO))
     },
     checkDetail (index) {
-      this.$router.push(
-        {
-          path: '/finish-transport',
-          name: 'FinishTransport',
-          params: {
-            task: this.taskList[index]
-          }
-        }, () => {
-          this.isLoginError = false
-          // window.location.reload()
-        })
+      if (this.taskList[index].deliveryStatus === '0') {
+        this.$router.push(
+          {
+            path: '/wait-transport',
+            name: 'WaitTransport',
+            params: {
+              task: this.taskList[index]
+            }
+          }, () => {
+            this.isLoginError = false
+          })
+      } else if (this.taskList[index].deliveryStatus === '1') {
+        this.$router.push(
+          {
+            path: '/in-transport',
+            name: 'InTransport',
+            params: {
+              task: this.taskList[index]
+            }
+          }, () => {
+            this.isLoginError = false
+          })
+      }
     }
   },
   mounted () {
@@ -91,9 +104,9 @@ export default {
     this.getUser()
   },
   computed: {
-    finishTaskList: function () {
+    incompleteTaskList: function () {
       return this.taskList.filter(function (task) {
-        return task.deliveryStatus === '2'
+        return task.deliveryStatus === '1' || task.deliveryStatus === '0'
       })
     }
   }

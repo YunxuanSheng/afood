@@ -1,10 +1,3 @@
-/*
- * @Author: YunxuanSheng 
- * @Date: 2021-07-19 16:28:58 
- * @Last Modified by:   YunxuanSheng 
- * @Last Modified time: 2021-07-19 16:28:58 
- */
-
 
 <template>
   <div class="search">

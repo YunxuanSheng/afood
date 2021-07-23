@@ -5,7 +5,7 @@
       <van-col span="24">
         <div class="header">
           <img src="@/assets/images/user-center/user-photo.png">
-          <div class="user-name">陈大仙</div>
+          <div class="user-name">{{userInfo.name}}</div>
           <div class="location"><van-icon name="location" />&nbsp;杭州市军供站</div>
         </div>
       </van-col>
@@ -28,26 +28,29 @@
       </template>
     </van-cell>
 
-    <!-- <van-tabbar v-model="active" active-color='#005D28' inactive-color="rgba(25, 31, 37, 0.4)">
-      <van-tabbar-item name="home" icon="wap-home">
-        <router-link to="/">消息 </router-link>
-      </van-tabbar-item>
-      <van-tabbar-item name="user" icon="manager">
-        <router-link to="user-center">用户中心 </router-link>
-      </van-tabbar-item>
-    </van-tabbar> -->
   </div>
 </template>
 <script>
 // @ is an alias to /src
-
+import store from 'store'
+import { USER_INFO } from '@/store/mutation-types'
 export default {
   name: 'user-center',
   data () {
     return {
       value: '',
-      active: 'user-center'
+      active: 'user-center',
+      userInfo: ''
     }
+  },
+  methods: {
+    getUser () {
+      this.userInfo = store.get(USER_INFO)
+      console.log(store.get(USER_INFO).name)
+    }
+  },
+  mounted () {
+    this.getUser()
   }
 }
 

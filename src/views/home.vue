@@ -36,41 +36,39 @@
           <van-icon name="arrow" class="arrow-icon" />
         </template>
       </van-cell>
-      <van-row>
+      <van-row v-for = "(item,index) in news.slice(0, 2)" :key="index">
         <van-col span="13" offset="1">
-          <h2>梁彦副局长赴浙江调研粮食和物质储备工作</h2>
-          <div class="time">发布时间 2020/12/12 12:0</div>
+          <h3>{{item.contentTitle}}</h3>
+          <div class="time">{{item.createTime}}</div>
         </van-col>
-        <van-col span="8" offset="2"><img src="../assets/images/pic_1.png"></van-col>
-      </van-row>
-       <van-row>
-        <van-col span="13" offset="1">
-          <h2>2019年仓储管理交流现场会在浙江杭州</h2>
-          <div class="time">发布时间 2020/12/12 12:0</div>
-        </van-col>
-        <van-col span="8" offset="2"><img src="../assets/images/pic_2.png"></van-col>
+        <van-col span="8" offset="2"><img v-bind:src="'http://172.22.31.200:8001'+item.contentImg" alt=""></van-col>
       </van-row>
     </div>
-    <!-- <van-tabbar v-model="active" active-color='#005D28' inactive-color="rgba(25, 31, 37, 0.4)">
-      <van-tabbar-item name="home" icon="wap-home">
-        <router-link to="/">消息 </router-link>
-      </van-tabbar-item>
-      <van-tabbar-item name="user" icon="manager">
-        <router-link to="user-center">用户中心 </router-link>
-      </van-tabbar-item>
-    </van-tabbar> -->
   </div>
 </template>
 <script>
 // @ is an alias to /src
-
+import queryApi from '@/api/query.js'
 export default {
   name: 'Home',
   data () {
     return {
       value: '',
-      active: 'home'
+      active: 'home',
+      news: []
     }
+  },
+  methods: {
+    getNews () {
+      queryApi.getNews('query/getNews').then(res => {
+        console.log(res)
+        this.news = res
+        console.log(this.news)
+      })
+    }
+  },
+  mounted () {
+    this.getNews()
   }
 }
 
